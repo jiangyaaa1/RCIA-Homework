@@ -28,7 +28,10 @@ int a =0;
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+LightControl::Light light;
+LightControl::Light::GPIO light_gpio{GPIOA, GPIO_PIN_9};  
+LightControl::Light::GPIO light_gpioA7{GPIOA, GPIO_PIN_7};
+LightControl::Light::GPIO light_gpioA6{GPIOA, GPIO_PIN_6};
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -55,38 +58,6 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-namespace LightControl
-{
-
-  class Light
-  {
-    public:
-    struct GPIO
-    {
-      GPIO_TypeDef* GPIOx;
-      uint16_t GPIO_Pin;
-    } ;
-  protected:
-  
-
-    void open_light(GPIO*GPIO)
-    {
-      HAL_GPIO_WritePin(GPIO->GPIOx, GPIO->GPIO_Pin, GPIO_PIN_SET);
-    }
-    void close_light(GPIO*GPIO)
-    {
-      HAL_GPIO_WritePin(GPIO->GPIOx, GPIO->GPIO_Pin, GPIO_PIN_RESET);
-    }
-
-  public:
-    void contrl_light(uint8_t state,GPIO*GPIO)
-    {
-      if (state==1) open_light(GPIO);
-      else close_light(GPIO);
-    }
-    
-  };
-}
 
 /* USER CODE END 0 */
 
@@ -121,10 +92,7 @@ int main(void)
   MX_GPIO_Init();
   MX_CAN1_Init();
   /* USER CODE BEGIN 2 */
-LightControl::Light light;
-LightControl::Light::GPIO light_gpio{GPIOA, GPIO_PIN_9};  
-LightControl::Light::GPIO light_gpioA7{GPIOA, GPIO_PIN_7};
-LightControl::Light::GPIO light_gpioA6{GPIOA, GPIO_PIN_6};
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
