@@ -22,7 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "led.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -49,9 +49,7 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-void LED_BLUE(void);
-void LED_RED(void);
-void LED_GREEN(void);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -152,19 +150,7 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-void LED_BLUE()
-{ 
-  HAL_GPIO_TogglePin(LED_B_GPIO_Port, LED_B_Pin);
-}
 
-void LED_RED()
-{ 
-  HAL_GPIO_TogglePin(LED_R_GPIO_Port, LED_R_Pin );
-}
-void LED_GREEN()
-{ 
-  HAL_GPIO_TogglePin(LED_G_GPIO_Port, LED_G_Pin);
-}
 /* USER CODE END 4 */
 
 /**
