@@ -49,7 +49,7 @@ void Key_Control_LED(GPIO_TypeDef* LED_Port, uint16_t LED_Pin,
 {
     GPIO_PinState now_state = HAL_GPIO_ReadPin(KEY_Port, KEY_Pin);
 
-    if(mode == 0)    //ģʽ�趨�����������ɿ���
+    if(mode == 0)    //模式设置，点按亮灭
     {
         if(now_state == GPIO_PIN_RESET && (HAL_GetTick() - *tick) > 20)
         {
@@ -117,6 +117,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
+	//设置初始状态
   uint8_t key1_last = GPIO_PIN_SET; //���ð�����ʼ״̬
   uint32_t key1_tick = 0; //���ó�ʼʱ��
   /* USER CODE END 2 */
@@ -125,7 +126,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		
+		//填入对应的引脚，模式选择
 		Key_Control_LED(GPIOA, GPIO_PIN_3, GPIOA, GPIO_PIN_4, 0, &key1_last, &key1_tick);
     /* USER CODE END WHILE */
 
